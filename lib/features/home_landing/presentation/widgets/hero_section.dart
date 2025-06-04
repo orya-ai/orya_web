@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:animate_do/animate_do.dart';
+import 'package:go_router/go_router.dart';
+import 'package:orya_web/core/router/app_router.dart';
 import 'iphone_mockup.dart';
 
 class HeroSection extends StatelessWidget {
-  final GlobalKey heroSectionKey;
-
   const HeroSection({
     super.key,
-    required this.heroSectionKey,
   });
 
   @override
@@ -18,7 +17,6 @@ class HeroSection extends StatelessWidget {
     final isSmallScreen = screenWidth < 1000;
 
     return Container(
-      key: heroSectionKey,
       width: double.infinity,
       padding: EdgeInsets.symmetric(
         horizontal: isSmallScreen ? 24 : 80,
@@ -48,60 +46,66 @@ class HeroSection extends StatelessWidget {
   }
 
   Widget _buildContent(TextTheme textTheme, bool isSmallScreen) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        FadeInDown(
-          duration: const Duration(milliseconds: 800),
-          child: Text(
-            'The Future of Digital Experience',
-            textAlign: TextAlign.center,
-            style: GoogleFonts.inter(
-              fontSize: isSmallScreen ? 36 : 60,
-              fontWeight: FontWeight.bold,
-              height: 1.1,
-              color: Colors.black,
-            ),
-          ),
-        ),
-        const SizedBox(height: 24),
-        FadeInDown(
-          delay: const Duration(milliseconds: 200),
-          duration: const Duration(milliseconds: 800),
-          child: Text(
-            'Introducing a new way to interact with technology. Simple, intuitive, and powerful.',
-            style: GoogleFonts.inter(
-              fontSize: 24,
-              color: Colors.black87,
-              height: 1.5,
-            ),
-          ),
-        ),
-        const SizedBox(height: 40),
-        FadeInUp(
-          delay: const Duration(milliseconds: 400),
-          duration: const Duration(milliseconds: 800),
-          child: TextButton(
-            onPressed: () {},
-            style: TextButton.styleFrom(
-              padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
-              backgroundColor: Colors.black,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(30),
-              ),
-            ),
-            child: const Text(
-              'Learn more',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 18,
-                fontWeight: FontWeight.w500,
+    return Builder(
+      builder: (context) => Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          FadeInDown(
+            duration: const Duration(milliseconds: 800),
+            child: Text(
+              'The Future of Digital Experience',
+              textAlign: TextAlign.center,
+              style: GoogleFonts.inter(
+                fontSize: isSmallScreen ? 36 : 60,
+                fontWeight: FontWeight.bold,
+                height: 1.1,
+                color: Colors.black,
               ),
             ),
           ),
-        ),
-      ],
+          const SizedBox(height: 24),
+          FadeInDown(
+            delay: const Duration(milliseconds: 200),
+            duration: const Duration(milliseconds: 800),
+            child: Text(
+              'Introducing a new way to interact with technology. Simple, intuitive, and powerful.',
+              style: GoogleFonts.inter(
+                fontSize: isSmallScreen ? 18 : 24,
+                color: Colors.black87,
+                height: 1.5,
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ),
+          const SizedBox(height: 40),
+          FadeInUp(
+            delay: const Duration(milliseconds: 400),
+            duration: const Duration(milliseconds: 800),
+            child: TextButton(
+              onPressed: () {
+                // Navigate to about page using GoRouter
+                context.go(AppRoutes.about);
+              },
+              style: TextButton.styleFrom(
+                padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+                backgroundColor: Colors.black,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30),
+                ),
+              ),
+              child: const Text(
+                'Learn more',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 18,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

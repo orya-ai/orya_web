@@ -1,87 +1,58 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:animate_do/animate_do.dart';
-import 'package:orya_web/features/shared_ui/widgets/nav_bar.dart';
-import 'package:orya_web/features/shared_ui/widgets/footer.dart';
+import 'package:google_fonts/google_fonts.dart';
+
+import '../../../../core/theme/app_theme.dart';
 
 class AboutPage extends StatelessWidget {
   const AboutPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(80), // Standard NavBar height
-        child: NavBar(
-          onJoinPressed: () => Navigator.pushNamed(context, '/'),
-          onTeamPressed: () => Navigator.pushNamed(context, '/team'),
-        ),
-      ),
-      body: SingleChildScrollView(
+    return SingleChildScrollView(
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 40),
+        width: double.infinity,
         child: Column(
-          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 80),
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: Theme.of(context).appBarTheme.backgroundColor,
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  FadeInUp(
-                    duration: const Duration(milliseconds: 600),
-                    child: Text(
-                      'About ORYA',
-                      style: GoogleFonts.inter(
-                        fontSize: 36,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 16),
-                  FadeInUp(
-                    duration: const Duration(milliseconds: 800),
-                    child: Container(
-                      width: 60,
-                      height: 4,
-                      decoration: BoxDecoration(
-                        color: Colors.black,
-                        borderRadius: BorderRadius.circular(2),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 40),
-                  LayoutBuilder(
-                    builder: (context, constraints) {
-                      if (constraints.maxWidth > 900) {
-                        // Desktop layout
-                        return Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Expanded(child: _buildContentColumn(0)),
-                            const SizedBox(width: 60),
-                            Expanded(child: _buildContentColumn(200)),
-                          ],
-                        );
-                      } else {
-                        // Mobile layout
-                        return Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            _buildContentColumn(0),
-                            const SizedBox(height: 40),
-                            _buildContentColumn(200),
-                          ],
-                        );
-                      }
-                    },
-                  ),
-                ],
+            FadeInUp(
+              duration: const Duration(milliseconds: 600),
+              child: Text(
+                'About ORYA',
+                style: GoogleFonts.inter(
+                  fontSize: 36,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
-            const Footer(),
+            const SizedBox(height: 40),
+            LayoutBuilder(
+              builder: (context, constraints) {
+                if (constraints.maxWidth > 900) {
+                  // Desktop layout
+                  return Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Expanded(child: _buildContentColumn(0)),
+                      const SizedBox(width: 60),
+                      Expanded(child: _buildContentColumn(200)),
+                    ],
+                  );
+                } else {
+                  // Mobile layout
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      _buildContentColumn(0),
+                      const SizedBox(height: 40),
+                      _buildContentColumn(200),
+                    ],
+                  );
+                }
+              },
+            ),
+            const SizedBox(height: 80), // Space for bottom navigation bar
           ],
         ),
       ),

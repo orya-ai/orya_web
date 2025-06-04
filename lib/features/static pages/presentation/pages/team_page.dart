@@ -1,91 +1,65 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:animate_do/animate_do.dart';
-import 'package:orya_web/features/shared_ui/widgets/nav_bar.dart';
-import 'package:orya_web/features/shared_ui/widgets/footer.dart';
 
 class TeamPage extends StatelessWidget {
   const TeamPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(80),
-        child: NavBar(
-          onJoinPressed: () => Navigator.pushNamed(context, '/'),
-          onAboutPressed: () => Navigator.pushNamed(context, '/about'),
+    return SingleChildScrollView(
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 40),
+        width: double.infinity,
+        child: Column(
+          children: [
+            FadeInUp(
+              duration: const Duration(milliseconds: 600),
+              child: Text(
+                'Our Team',
+                style: GoogleFonts.inter(
+                  fontSize: 36,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            const SizedBox(height: 16),
+            FadeInUp(
+              duration: const Duration(milliseconds: 800),
+              child: Container(
+                width: 60,
+                height: 4,
+                decoration: BoxDecoration(
+                  color: Colors.black,
+                  borderRadius: BorderRadius.circular(2),
+                ),
+              ),
+            ),
+            const SizedBox(height: 24),
+            FadeInUp(
+              duration: const Duration(milliseconds: 1000),
+              child: Text(
+                'Meet the people behind ORYA',
+                style: GoogleFonts.inter(
+                  fontSize: 18,
+                  color: Colors.black54,
+                ),
+              ),
+            ),
+            const SizedBox(height: 60),
+            LayoutBuilder(
+              builder: (context, constraints) {
+                final crossAxisCount = constraints.maxWidth > 900
+                    ? 3
+                    : constraints.maxWidth > 600
+                        ? 2
+                        : 1;
+                return _buildTeamGrid(crossAxisCount);
+              },
+            ),
+            const SizedBox(height: 80), // Space for bottom navigation bar
+          ],
         ),
-      ),
-      body: LayoutBuilder(
-        builder: (context, constraints) {
-          return SingleChildScrollView(
-            child: ConstrainedBox(
-              constraints: BoxConstraints(
-                minHeight: constraints.maxHeight,
-              ),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 80),
-                    width: double.infinity,
-                    color: Theme.of(context).appBarTheme.backgroundColor,
-              child: Column(
-                children: [
-                  FadeInUp(
-                    duration: const Duration(milliseconds: 600),
-                    child: Text(
-                      'Our Team',
-                      style: GoogleFonts.inter(
-                        fontSize: 36,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 16),
-                  FadeInUp(
-                    duration: const Duration(milliseconds: 800),
-                    child: Container(
-                      width: 60,
-                      height: 4,
-                      decoration: BoxDecoration(
-                        color: Colors.black,
-                        borderRadius: BorderRadius.circular(2),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 24),
-                  FadeInUp(
-                    duration: const Duration(milliseconds: 1000),
-                    child: Text(
-                      'Meet the people behind ORYA',
-                      style: GoogleFonts.inter(
-                        fontSize: 18,
-                        color: Colors.black54,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 60),
-                  LayoutBuilder(
-                    builder: (context, constraints) {
-                      final crossAxisCount = constraints.maxWidth > 900
-                          ? 3
-                          : constraints.maxWidth > 600
-                              ? 2
-                              : 1;
-                      return _buildTeamGrid(crossAxisCount);
-                    },
-                  ),
-                ],
-              ),
-            ),
-                  const Footer(),
-                ],
-              ),
-            ),
-          );
-        },
       ),
     );
   }
