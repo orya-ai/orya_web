@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:animate_do/animate_do.dart';
 
-import 'components/nav_bar.dart';
-import 'components/waitlist_form.dart';
-import 'about_page.dart';
-import 'team_page.dart';
-import 'components/footer.dart';
-import 'app_logo.dart';
-import 'core/theme/app_theme.dart'; // Import the theme from core/theme
+import 'features/shared_ui/widgets/nav_bar.dart';
+import 'features/static pages/presentation/pages/about_page.dart';
+import 'features/static pages/presentation/pages/team_page.dart';
+import 'features/shared_ui/widgets/footer.dart';
+import 'core/theme/app_theme.dart';
+import 'features/home_landing/presentation/widgets/hero_section.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -70,92 +67,36 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
+      body: Column(
         children: [
-          SingleChildScrollView(
-            controller: _scrollController,
-            child: Column(
-              children: [
-                // Hero section with waitlist form
-                _buildHeroSection(),
-                
-                // About and Team sections removed, will be separate pages
-                
-                // Footer with social links
-                const Footer(),
-              ],
-            ),
-          ),
-          
           // Fixed navigation bar
-          Positioned(
-            top: 0,
-            left: 0,
-            right: 0,
-            child: NavBar(
-              onAboutPressed: () => Navigator.pushNamed(context, '/about'),
-              onTeamPressed: () => Navigator.pushNamed(context, '/team'),
-              onJoinPressed: () => _scrollToSection(_heroSectionKey),
+          NavBar(
+            onAboutPressed: () => Navigator.pushNamed(context, '/about'),
+            onTeamPressed: () => Navigator.pushNamed(context, '/team'),
+            onJoinPressed: () => _scrollToSection(_heroSectionKey),
+          ),
+          // Main content area that pushes footer to bottom
+          Expanded(
+            child: SingleChildScrollView(
+              controller: _scrollController,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  // Hero section with waitlist form
+                  _buildHeroSection(),
+                  // About and Team sections removed, will be separate pages
+                ],
+              ),
             ),
           ),
+          // Footer that stays at the bottom
+          const Footer(),
         ],
       ),
     );
   }
 
   Widget _buildHeroSection() {
-    return Container(
-      key: _heroSectionKey,
-      width: double.infinity,
-      // Adjusted padding for a more focused hero section
-      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 60),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          _buildHeroContent(), // Headline text
-          const SizedBox(height: 40), // Space between text and form
-          WaitlistForm(), // Centered WaitlistForm
-          // Removed LayoutBuilder for a simpler, consistent column layout
-          // Desktop/Mobile differences can be handled within WaitlistForm or _buildHeroContent if needed
-        ],
-      ),
-    );
-  }
-
-  Widget _buildHeroContent() {
-    // Centering the text content
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center, // Center text for a more focused look
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        FadeInDown(
-          duration: const Duration(milliseconds: 800),
-          child: Text(
-            'The Future of Digital Experience is Coming.', // More concise headline
-            textAlign: TextAlign.center, // Ensure text is centered
-            style: GoogleFonts.inter(
-              fontSize: 48, // Kept original size, can be adjusted
-              fontWeight: FontWeight.bold,
-              height: 1.2,
-            ),
-          ),
-        ),
-        const SizedBox(height: 20),
-        FadeInDown(
-          delay: const Duration(milliseconds: 200),
-          duration: const Duration(milliseconds: 800),
-          child: Text(
-            'Sign up to be the first to know when ORYA launches.', // Direct call to action
-            textAlign: TextAlign.center, // Ensure text is centered
-            style: GoogleFonts.inter(
-              fontSize: 18,
-              color: Colors.black87,
-              height: 1.6,
-            ),
-          ),
-        ),
-        // "Learn More" button removed to give prominence to WaitlistForm
-      ],
-    );
+    return HeroSection(heroSectionKey: _heroSectionKey);
   }
 }

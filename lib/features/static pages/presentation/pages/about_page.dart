@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:animate_do/animate_do.dart';
-import 'package:orya_web/components/nav_bar.dart';
-import 'package:orya_web/components/footer.dart';
+import 'package:orya_web/features/shared_ui/widgets/nav_bar.dart';
+import 'package:orya_web/features/shared_ui/widgets/footer.dart';
 
 class AboutPage extends StatelessWidget {
   const AboutPage({super.key});
@@ -19,10 +19,14 @@ class AboutPage extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 80),
               width: double.infinity,
+              decoration: BoxDecoration(
+                color: Theme.of(context).appBarTheme.backgroundColor,
+              ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

@@ -2,35 +2,54 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AppTheme {
-  static final Color _primaryBackgroundColor = const Color(0xFFEBE8E5);
-  static final Color _primaryTextColor = Colors.black; // Adjust if needed for contrast
-  static final Color _accentColor = Colors.black; // Example, can be your brand's accent
+  // Define color constants
+  static const Color primaryBackgroundColor = Color(0xffefedec); // Light beige for header/footer
+  static const Color scaffoldBackgroundColor = Color(0xffefedec); // White for main content
+  static const Color primaryTextColor = Colors.black;
+  static const Color accentColor = Colors.black;
+  static const Color headerFooterColor = Color(0xffefedec); // Same as primaryBackgroundColor for clarity
 
   static ThemeData get lightTheme {
     return ThemeData(
       useMaterial3: true,
-      scaffoldBackgroundColor: _primaryBackgroundColor,
+      scaffoldBackgroundColor: scaffoldBackgroundColor, // Main content background
+      canvasColor: scaffoldBackgroundColor, // For dialogs and other surfaces
+      cardColor: Colors.white, // For cards and other surfaces
+      dialogBackgroundColor: Colors.white, // For dialogs
+      
       colorScheme: ColorScheme.fromSeed(
-        seedColor: _accentColor, // Seed color for generating scheme
-        background: _primaryBackgroundColor, // Main background
-        primary: _accentColor, // Primary interactive elements
-        onBackground: _primaryTextColor, // Text/icons on background
+        seedColor: accentColor,
+        background: scaffoldBackgroundColor, // Main content background
+        surface: Colors.white, // Surface color for cards, sheets, menus, etc.
+        primary: accentColor, // Primary interactive elements
+        onBackground: primaryTextColor, // Text/icons on background
+        onSurface: primaryTextColor, // Text/icons on surface
         onPrimary: Colors.white, // Text/icons on primary color elements
-        // You can define other colors like secondary, error, surface etc.
+        // You can define other colors like secondary, error, etc.
       ),
       textTheme: GoogleFonts.interTextTheme(
         // Base text theme for good contrast, can be further customized
-        ThemeData.light().textTheme.apply(bodyColor: _primaryTextColor, displayColor: _primaryTextColor),
+        ThemeData.light().textTheme.apply(
+          bodyColor: primaryTextColor,
+          displayColor: primaryTextColor,
+        ),
       ),
+      // App bar theme - using header/footer color
       appBarTheme: AppBarTheme(
-        backgroundColor: _primaryBackgroundColor,
+        backgroundColor: headerFooterColor,
         elevation: 0, // Flat app bars
-        iconTheme: IconThemeData(color: _primaryTextColor),
+        iconTheme: const IconThemeData(color: primaryTextColor),
         titleTextStyle: GoogleFonts.inter(
-          color: _primaryTextColor,
+          color: primaryTextColor,
           fontSize: 20,
           fontWeight: FontWeight.w500,
         ),
+      ),
+      
+      // Bottom app bar theme - using header/footer color
+      bottomAppBarTheme: const BottomAppBarTheme(
+        color: headerFooterColor,
+        elevation: 0,
       ),
       // Define other component themes as needed (buttons, cards, etc.)
     );

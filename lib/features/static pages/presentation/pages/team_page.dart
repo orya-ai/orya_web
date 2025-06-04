@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:animate_do/animate_do.dart';
-import 'package:orya_web/components/nav_bar.dart';
-import 'package:orya_web/components/footer.dart';
+import 'package:orya_web/features/shared_ui/widgets/nav_bar.dart';
+import 'package:orya_web/features/shared_ui/widgets/footer.dart';
 
 class TeamPage extends StatelessWidget {
   const TeamPage({super.key});
@@ -17,13 +17,20 @@ class TeamPage extends StatelessWidget {
           onAboutPressed: () => Navigator.pushNamed(context, '/about'),
         ),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 80),
-              width: double.infinity,
-              color: Colors.grey.shade50,
+      body: LayoutBuilder(
+        builder: (context, constraints) {
+          return SingleChildScrollView(
+            child: ConstrainedBox(
+              constraints: BoxConstraints(
+                minHeight: constraints.maxHeight,
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 80),
+                    width: double.infinity,
+                    color: Theme.of(context).appBarTheme.backgroundColor,
               child: Column(
                 children: [
                   FadeInUp(
@@ -73,9 +80,12 @@ class TeamPage extends StatelessWidget {
                 ],
               ),
             ),
-            const Footer(),
-          ],
-        ),
+                  const Footer(),
+                ],
+              ),
+            ),
+          );
+        },
       ),
     );
   }

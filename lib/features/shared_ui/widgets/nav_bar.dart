@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../app_logo.dart';
+import 'package:orya_web/core/theme/app_logo.dart';
+
+// import 'features/shared_ui/widgets/nav_bar.dart'; // Erroneous self-import commented out
+import 'package:orya_web/features/waitlist/presentation/widgets/waitlist_form.dart';
+import 'package:orya_web/features/static pages/presentation/pages/about_page.dart';
+import 'package:orya_web/features/static pages/presentation/pages/team_page.dart';
 
 class NavBar extends StatelessWidget {
   const NavBar({
@@ -20,11 +25,11 @@ class NavBar extends StatelessWidget {
       height: 80,
       width: double.infinity,
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Theme.of(context).appBarTheme.backgroundColor, // Use app bar background color from theme
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.03), // Softer opacity
-            offset: const Offset(0, 2), // Slightly more pronounced offset for a subtle lift
+            color: Colors.black.withOpacity(0.03),
+            offset: const Offset(0, 2),
             blurRadius: 8, // Slightly tighter blur for a cleaner edge
           ),
         ],
