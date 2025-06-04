@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:orya_web/core/router/app_router.dart';
+import 'package:orya_web/core/theme/app_logo.dart';
 
 class NavBar extends StatelessWidget {
   final VoidCallback? onJoinPressed;
@@ -22,14 +23,14 @@ class NavBar extends StatelessWidget {
           child: BackdropFilter(
             filter: ImageFilter.blur(sigmaX: 12.0, sigmaY: 12.0),
             child: Container(
-              height: 60,
+              height: 62,
               padding: const EdgeInsets.symmetric(horizontal: 24.0),
               decoration: BoxDecoration(
                 color: Colors.white.withOpacity(0.2),
                 borderRadius: BorderRadius.circular(20),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withOpacity(0.08),
+                    color: Colors.white.withOpacity(0.08),
                     offset: const Offset(0, 4),
                     blurRadius: 20,
                   ),
@@ -41,14 +42,9 @@ class NavBar extends StatelessWidget {
                   // Logo
                   GestureDetector(
                     onTap: () => context.go(AppRoutes.home),
-                    child: const Text(
-                      'ORYA',
-                      style: TextStyle(
-                        fontSize: 22,
-                        fontWeight: FontWeight.bold,
-                        letterSpacing: 2.0,
-                        color: Colors.black,
-                      ),
+                    child: AppLogo(
+                      size: 40,
+                      color: Colors.black,
                     ),
                   ),
 
