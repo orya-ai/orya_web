@@ -11,8 +11,6 @@ class HomePage extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: const [
           HeroSection(),
-          // Add more sections here as needed
-          SizedBox(height: 80), // Space for bottom navigation bar
         ],
       ),
     );

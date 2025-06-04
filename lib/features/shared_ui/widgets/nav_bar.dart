@@ -65,13 +65,13 @@ class NavBar extends StatelessWidget {
                       ElevatedButton(
                         onPressed: onJoinPressed,
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.black,
+                          backgroundColor: Theme.of(context).textTheme.bodyLarge?.color?.withOpacity(0.9),
                           foregroundColor: Colors.white,
                           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(30),
                           ),
-                          elevation: 0,
+                          elevation: 0,q
                         ),
                         child: Text(
                           'Join Waitlist',

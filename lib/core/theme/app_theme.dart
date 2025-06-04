@@ -5,9 +5,11 @@ class AppTheme {
   // Define color constants
   static const Color primaryBackgroundColor = Color(0xffefedec); // Light beige for header/footer
   static const Color scaffoldBackgroundColor = Color(0xffefedec); // White for main content
-  static const Color primaryTextColor = Colors.black;
-  static const Color accentColor = Colors.black;
+  static const Color primaryTextColor = Color(0xFF3B3B3B);
+  static const Color accentColor = Color(0xFF3B3B3B);
   static const Color headerFooterColor = Color(0xffefedec); // Same as primaryBackgroundColor for clarity
+
+    static const Color primaryButtonColor = Color(0xFF3B3B3B);
 
   static ThemeData get lightTheme {
     return ThemeData(
