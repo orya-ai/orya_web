@@ -1,3 +1,4 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -5,80 +6,91 @@ import 'package:orya_web/core/router/app_router.dart';
 
 class NavBar extends StatelessWidget {
   final VoidCallback? onJoinPressed;
-  
+
   const NavBar({
-    super.key, 
+    super.key,
     this.onJoinPressed,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 80,
-      width: double.infinity,
-      padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
-      decoration: BoxDecoration(
-        color: Theme.of(context).scaffoldBackgroundColor,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.03),
-            offset: const Offset(0, 2),
-            blurRadius: 8,
-          ),
-        ],
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          // Logo
-          GestureDetector(
-            onTap: () => context.go(AppRoutes.home),
-            child: const Text(
-              'ORYA',
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-                letterSpacing: 2.0,
+    return SafeArea(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(20),
+          child: BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 12.0, sigmaY: 12.0),
+            child: Container(
+              height: 60,
+              padding: const EdgeInsets.symmetric(horizontal: 24.0),
+              decoration: BoxDecoration(
+                color: Colors.white.withOpacity(0.2),
+                borderRadius: BorderRadius.circular(20),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.08),
+                    offset: const Offset(0, 4),
+                    blurRadius: 20,
+                  ),
+                ],
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  // Logo
+                  GestureDetector(
+                    onTap: () => context.go(AppRoutes.home),
+                    child: const Text(
+                      'ORYA',
+                      style: TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
+                        letterSpacing: 2.0,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ),
+
+                  // Navigation links + button
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      _NavItem(
+                        title: 'About',
+                        onPressed: () => context.go(AppRoutes.about),
+                      ),
+                      const SizedBox(width: 24),
+                      _NavItem(
+                        title: 'Team',
+                        onPressed: () => context.go(AppRoutes.team),
+                      ),
+                      const SizedBox(width: 24),
+                      ElevatedButton(
+                        onPressed: onJoinPressed,
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.black,
+                          foregroundColor: Colors.white,
+                          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30),
+                          ),
+                          elevation: 0,
+                        ),
+                        child: Text(
+                          'Join Waitlist',
+                          style: GoogleFonts.inter(
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
               ),
             ),
           ),
-          
-          // Navigation Links
-          Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              _NavItem(
-                title: 'About',
-                onPressed: () => context.go(AppRoutes.about),
-              ),
-              const SizedBox(width: 32),
-              _NavItem(
-                title: 'Team',
-                onPressed: () => context.go(AppRoutes.team),
-              ),
-              const SizedBox(width: 32),
-              // Join Waitlist Button
-              ElevatedButton(
-                onPressed: onJoinPressed,
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.black,
-                  foregroundColor: Colors.white,
-                  padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                  elevation: 0,
-                ),
-                child: Text(
-                  'Join Waitlist',
-                  style: GoogleFonts.inter(
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ],
+        ),
       ),
     );
   }
@@ -119,4 +131,3 @@ class _NavItemState extends State<_NavItem> {
     );
   }
 }
-

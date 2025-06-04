@@ -8,7 +8,7 @@ class MainScaffold extends StatelessWidget {
   final int currentIndex;
   final VoidCallback onJoinPressed;
   final Widget child;
-  
+
   const MainScaffold({
     super.key,
     required this.currentIndex,
@@ -19,19 +19,29 @@ class MainScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            // Navigation Bar
-            NavBar(onJoinPressed: onJoinPressed),
-            
-            // Main Content
-            child,
-            
-            // Footer (only on home page)
-            if (currentIndex == 0) const Footer(),
-          ],
-        ),
+      body: Stack(
+        children: [
+          // Scrollable page content (behind the NavBar)
+          Positioned.fill(
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  const SizedBox(height: 100), // Space for floating NavBar
+                  child,
+                  if (currentIndex == 0) const Footer(),
+                ],
+              ),
+            ),
+          ),
+
+          // Floating, sticky NavBar
+          Positioned(
+            top: 0,
+            left: 0,
+            right: 0,
+            child: NavBar(onJoinPressed: onJoinPressed),
+          ),
+        ],
       ),
     );
   }
