@@ -49,6 +49,7 @@ class HeroSection extends StatelessWidget {
           color: Colors.white, // Or any color you prefer
         ),
         
+        /*
         // Next content section (placeholder)
         Container(
           width: double.infinity,
@@ -66,6 +67,8 @@ class HeroSection extends StatelessWidget {
             ),
           ),
         ),
+
+        */
       ],
     );
   }

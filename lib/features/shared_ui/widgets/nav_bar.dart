@@ -71,7 +71,7 @@ class NavBar extends StatelessWidget {
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(30),
                           ),
-                          elevation: 0,q
+                          elevation: 0,
                         ),
                         child: Text(
                           'Join Waitlist',
