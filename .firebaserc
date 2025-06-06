@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "orya-v3"
-  }
+    "default": "orya-v3",
+    "orya-web": "orya-v3"
+  },
+  "targets": {},
+  "etags": {}
 }

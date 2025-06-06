@@ -67,18 +67,14 @@ class TeamPage extends StatelessWidget {
   Widget _buildTeamGrid(int crossAxisCount) {
     final teamMembers = [
       {
-        'name': 'Alex Johnson',
+        'name': 'Nicole De La Paz',
         'role': 'Founder & CEO',
         'delay': 0,
       },
+      
       {
-        'name': 'Sarah Chen',
-        'role': 'Lead Designer',
-        'delay': 200,
-      },
-      {
-        'name': 'Michael Roberts',
-        'role': 'CTO',
+        'name': 'Bilal De La Paz',
+        'role': 'Founder & COO',
         'delay': 400,
       },
     ];

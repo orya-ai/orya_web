@@ -26,7 +26,7 @@ class MainScaffold extends StatelessWidget {
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  const SizedBox(height: 100), // Space for floating NavBar
+                  const SizedBox(height: 62), // Space for floating NavBar
                   child,
                   if (currentIndex == 0) const Footer(),
                 ],

@@ -76,8 +76,8 @@ class AboutPage extends StatelessWidget {
           const SizedBox(height: 24),
           Text(
             delay == 0
-                ? 'We\'re building a platform that redefines the way people connect with products they love. Our mission is to create a seamless, intuitive experience that brings value to users while maintaining the highest standards of design and functionality.'
-                : 'Looking ahead, we envision a world where technology enhances human connection rather than replacing it. Our product aims to be at the forefront of this movement, setting new standards for how digital experiences can enrich our lives in meaningful ways.',
+                ? 'Orya\’s mission is to solve the modern epidemic of loneliness and emotional disconnection by helping people build and sustain their village - their inner community of aligned, supportive, deeply felt human connections. Through beautifully designed, habit-forming experiences and emotionally intelligent AI, Orya enables users to deepen the relationships they already have and discover new ones that align with who they are and who they are becoming. Whether someone feels unseen in a crowded city or isolated in silence, we give them the tools to form, grow, and tend to their most important relationships with care and ease.'
+                : 'We believe mental health doesn\’t begin at crisis. It begins with the quiet strength of consistent, meaningful connection. Orya transforms the invisible labor of staying close - remembering, reaching out, showing up - into something light, intentional, and even joyful. Our mission is not just to help people talk. It\’s to help them feel seen, remembered, and truly known - because the right relationship at the right time can change, or even save, a life.',
             style: GoogleFonts.inter(
               fontSize: 16,
               height: 1.8,
@@ -87,8 +87,8 @@ class AboutPage extends StatelessWidget {
           const SizedBox(height: 24),
           Text(
             delay == 0
-                ? 'Founded in 2024, we\'ve been working tirelessly to bring our vision to life. What started as a simple idea has grown into a passionate team of creators, developers, and designers united by a common purpose.'
-                : 'Our approach combines cutting-edge technology with thoughtful design, ensuring that every interaction feels natural and enhances your everyday experience. We believe that the best products don\'t just solve problems—they create new possibilities.',
+                ? 'We envision a world where mental health is not treated only in crisis, but protected proactively - through strong human connection, accessible emotional support, and daily psychological hygiene. In this future, loneliness is not normalized or dismissed as a phase of adulthood. It is seen for what it is: a social and biological health threat, with cognitive, emotional, and physical consequences. We believe that just as clean water and basic healthcare became global standards, emotional infrastructure - the systems that help people form and maintain meaningful relationships - must become essential to human wellbeing.'
+                : 'Our long-term vision is to help shift the mental health paradigm from reactive to preventative - making emotional wellbeing part of everyday life, like brushing your teeth or tracking your steps. Orya is our first major step toward that future: a system that helps individuals build and tend to their emotional support networks with care, intelligence, and intention. But the broader goal is systemic - to reduce the global burden of isolation, rehumanize digital interaction, and make emotional fitness a norm, not a luxury. We believe that solving mental health at scale starts with rebuilding the architecture of connection.',
             style: GoogleFonts.inter(
               fontSize: 16,
               height: 1.8,

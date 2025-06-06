@@ -17,7 +17,7 @@ class NavBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
+        padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 0),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(20),
           child: BackdropFilter(
