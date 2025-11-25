@@ -23,24 +23,23 @@ class MainScaffold extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       endDrawer: Drawer(
+        backgroundColor: AppTheme.primaryBackgroundColor,
         child: ListView(
           padding: EdgeInsets.zero,
           children: <Widget>[
-            SizedBox(
-              height: 100, // Or use DrawerHeader for more standard styling
-              child: DrawerHeader(
-                decoration: BoxDecoration(
-                  color: AppTheme.primaryBackgroundColor, // Example color
-                ),
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    'Menu',
-                    style: GoogleFonts.inter(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black87, // Adjust for contrast
-                    ),
+            SafeArea(
+              bottom: false,
+              child: Container(
+                // Or use DrawerHeader for more standard styling
+                color: AppTheme.primaryBackgroundColor, // Example color
+                padding: const EdgeInsets.fromLTRB(16, 24, 16, 12),
+                alignment: Alignment.bottomLeft,
+                child: Text(
+                  'Menu',
+                  style: GoogleFonts.inter(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black87, // Adjust for contrast
                   ),
                 ),
               ),
