@@ -182,6 +182,7 @@ class Footer extends StatelessWidget {
       case 'terms':
         return AppRoutes.termsAndConditions;
       case 'privacy':
+        return AppRoutes.privacyPolicy;
       case 'contact':
       default:
         return null; // No navigation for these yet
