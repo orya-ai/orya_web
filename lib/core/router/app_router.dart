@@ -4,6 +4,7 @@ import 'package:orya_web/features/home_landing/presentation/pages/home_page.dart
 import 'package:orya_web/features/shared_ui/widgets/main_scaffold.dart';
 import 'package:orya_web/features/static pages/presentation/pages/about_page.dart';
 import 'package:orya_web/features/static pages/presentation/pages/team_page.dart';
+import 'package:orya_web/features/static pages/presentation/pages/terms_and_conditions_page.dart';
 
 // Keys for navigation
 final GlobalKey<NavigatorState> _rootNavigatorKey = GlobalKey<NavigatorState>();
@@ -13,6 +14,7 @@ class AppRoutes {
   static const String home = '/';
   static const String about = '/about';
   static const String team = '/team';
+  static const String termsAndConditions = '/termsandconditions';
   
   // Helper to get the current route index
   static int getCurrentIndex(String path) {
@@ -59,6 +61,13 @@ final router = GoRouter(
           path: AppRoutes.team,
           pageBuilder: (context, state) => const NoTransitionPage(
             child: TeamPage(),
+          ),
+        ),
+        
+        GoRoute(
+          path: AppRoutes.termsAndConditions,
+          pageBuilder: (context, state) => const NoTransitionPage(
+            child: TermsAndConditionsPage(),
           ),
         ),
       ],

@@ -43,45 +43,98 @@ class Footer extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              const AppLogo(color: Colors.black87, size: 32),
+          LayoutBuilder(
+            builder: (context, constraints) {
+              final isMobile = constraints.maxWidth < 600;
               
-              Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  _buildFooterLink('About'),
-                  _buildFooterLink('Team'),
-                  _buildFooterLink('Privacy'),
-                  _buildFooterLink('Terms'),
-                  _buildFooterLink('Contact'),
-                ],
-              ),
-              
-              Row(
-                mainAxisSize: MainAxisSize.min,
-                children: List.generate(
-                  socialLinks.length,
-                  (index) => Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8),
-                    child: IconButton(
-                      icon: FaIcon(
-                        socialLinks[index]['icon'] as IconData,
-                        size: 16,
+              if (isMobile) {
+                return Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    const AppLogo(color: Colors.black87, size: 32),
+                    const SizedBox(height: 16),
+                    Wrap(
+                      alignment: WrapAlignment.center,
+                      spacing: 8,
+                      runSpacing: 4,
+                      children: [
+                        _buildFooterLink('About'),
+                        _buildFooterLink('Team'),
+                        _buildFooterLink('Privacy'),
+                        _buildFooterLink('Terms'),
+                        _buildFooterLink('Contact'),
+                      ],
+                    ),
+                    const SizedBox(height: 16),
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: List.generate(
+                        socialLinks.length,
+                        (index) => Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8),
+                          child: IconButton(
+                            icon: FaIcon(
+                              socialLinks[index]['icon'] as IconData,
+                              size: 16,
+                            ),
+                            onPressed: () => _launchUrl(socialLinks[index]['url'] as String),
+                            color: Colors.black87,
+                            hoverColor: Colors.black.withOpacity(0.1),
+                            splashRadius: 20,
+                            padding: EdgeInsets.zero,
+                            constraints: const BoxConstraints(),
+                          ),
+                        ),
                       ),
-                      onPressed: () => _launchUrl(socialLinks[index]['url'] as String),
-                      color: Colors.black87,
-                      hoverColor: Colors.black.withOpacity(0.1),
-                      splashRadius: 20,
-                      padding: EdgeInsets.zero,
-                      constraints: const BoxConstraints(),
+                    ),
+                  ],
+                );
+              }
+              
+              return Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const AppLogo(color: Colors.black87, size: 32),
+                  
+                  Wrap(
+                    alignment: WrapAlignment.center,
+                    spacing: 8,
+                    children: [
+                      _buildFooterLink('About'),
+                      _buildFooterLink('Team'),
+                      _buildFooterLink('Privacy'),
+                      _buildFooterLink('Terms'),
+                      _buildFooterLink('Contact'),
+                    ],
+                  ),
+                  
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: List.generate(
+                      socialLinks.length,
+                      (index) => Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 8),
+                        child: IconButton(
+                          icon: FaIcon(
+                            socialLinks[index]['icon'] as IconData,
+                            size: 16,
+                          ),
+                          onPressed: () => _launchUrl(socialLinks[index]['url'] as String),
+                          color: Colors.black87,
+                          hoverColor: Colors.black.withOpacity(0.1),
+                          splashRadius: 20,
+                          padding: EdgeInsets.zero,
+                          constraints: const BoxConstraints(),
+                        ),
+                      ),
                     ),
                   ),
-                ),
-              ),
-            ],
+                ],
+              );
+            },
           ),
           const SizedBox(height: 16),
           Text(
@@ -126,8 +179,9 @@ class Footer extends StatelessWidget {
         return AppRoutes.about;
       case 'team':
         return AppRoutes.team;
-      case 'privacy':
       case 'terms':
+        return AppRoutes.termsAndConditions;
+      case 'privacy':
       case 'contact':
       default:
         return null; // No navigation for these yet
